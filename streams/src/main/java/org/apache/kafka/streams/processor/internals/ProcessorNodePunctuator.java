@@ -14,22 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.kafka.connect.runtime;
+package org.apache.kafka.streams.processor.internals;
 
-import org.apache.kafka.common.config.ConfigDef;
-import org.apache.kafka.connect.runtime.isolation.Plugins;
+import org.apache.kafka.streams.processor.PunctuationType;
+import org.apache.kafka.streams.processor.Punctuator;
 
-import java.util.Map;
+public interface ProcessorNodePunctuator {
 
-public class SourceConnectorConfig extends ConnectorConfig {
+    void punctuate(ProcessorNode node, long streamTime, PunctuationType type, Punctuator punctuator);
 
-    private static ConfigDef config = ConnectorConfig.configDef();
-
-    public static ConfigDef configDef() {
-        return config;
-    }
-
-    public SourceConnectorConfig(Plugins plugins, Map<String, String> props) {
-        super(plugins, config, props);
-    }
 }
